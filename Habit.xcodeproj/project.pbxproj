@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC4922E92B65C350001DADFA /* HabitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922E82B65C350001DADFA /* HabitApp.swift */; };
 		FC4922EB2B65C350001DADFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922EA2B65C350001DADFA /* ContentView.swift */; };
 		FC4922ED2B65C352001DADFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4922EC2B65C352001DADFA /* Assets.xcassets */; };
 		FC4922F02B65C352001DADFA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4922EF2B65C352001DADFA /* Preview Assets.xcassets */; };
+		FC4922F82B65C3B1001DADFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922F72B65C3B1001DADFA /* AppDelegate.swift */; };
+		FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922F92B65C3B8001DADFA /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FC4922E52B65C350001DADFA /* Habit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Habit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC4922E82B65C350001DADFA /* HabitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitApp.swift; sourceTree = "<group>"; };
 		FC4922EA2B65C350001DADFA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FC4922EC2B65C352001DADFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC4922EF2B65C352001DADFA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FC4922F62B65C39D001DADFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FC4922F72B65C3B1001DADFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FC4922F92B65C3B8001DADFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +54,10 @@
 		FC4922E72B65C350001DADFA /* Habit */ = {
 			isa = PBXGroup;
 			children = (
-				FC4922E82B65C350001DADFA /* HabitApp.swift */,
+				FC4922F62B65C39D001DADFA /* Info.plist */,
 				FC4922EA2B65C350001DADFA /* ContentView.swift */,
+				FC4922F72B65C3B1001DADFA /* AppDelegate.swift */,
+				FC4922F92B65C3B8001DADFA /* SceneDelegate.swift */,
 				FC4922EC2B65C352001DADFA /* Assets.xcassets */,
 				FC4922EE2B65C352001DADFA /* Preview Content */,
 			);
@@ -137,8 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4922F82B65C3B1001DADFA /* AppDelegate.swift in Sources */,
 				FC4922EB2B65C350001DADFA /* ContentView.swift in Sources */,
-				FC4922E92B65C350001DADFA /* HabitApp.swift in Sources */,
+				FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +281,7 @@
 				DEVELOPMENT_TEAM = P8W47WSLD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Habit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +311,7 @@
 				DEVELOPMENT_TEAM = P8W47WSLD9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Habit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

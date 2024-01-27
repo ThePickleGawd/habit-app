@@ -6,18 +6,49 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
+    
+    @EnvironmentObject var locationListener: LocationListener
+    @State var swipeOffset: CGFloat = 0
+        
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            VStack(alignment: .center) {
+                HStack(alignment: .center ) {
+                    Image(systemName: "person.crop.circle").font(.system(size: 24))
+                    Spacer()
+                    Text("Today").font(.title)
+                    Spacer()
+                    Image(systemName: "gearshape").font(.system(size: 24))
+                }
+                .padding(.all)
+                List {
+                    Text("Habit 1")
+                    Text("Habit 2")
+                }
+                
+                
+            }.tabItem {
+                Image(systemName: "house")
+            }
+            VStack {
+                Text("Test")
+            }.tabItem {
+                Image(systemName: "plus.app")
+            }
+            
+            VStack {
+                
+            }.tabItem {
+                Image(systemName: "chart.line.uptrend.xyaxis")
+            }
         }
-        .padding()
     }
 }
+
+
 
 #Preview {
     ContentView()
