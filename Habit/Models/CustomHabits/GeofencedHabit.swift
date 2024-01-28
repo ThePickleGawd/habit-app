@@ -12,11 +12,11 @@ class GeofencedHabit : Habit {
     @Published var region: GeofenceRegion
     @Published var completed: Bool
     
-    init(name: String, region: GeofenceRegion, activeDays: Set<Weekday>) {
+    init(name: String, id: UUID = UUID(),creationDate: Date = Date(), activeDays: Set<Weekday> = [], region: GeofenceRegion, completed: Bool = false) {
         self.region = region
-        self.completed = false
+        self.completed = completed
         
-        super.init(name: name)
+        super.init(name: name, id: id, creationDate: creationDate, activeDays: activeDays)
     }
     
     override func getProgressString() -> String {
@@ -25,5 +25,9 @@ class GeofencedHabit : Habit {
     
     override func actionButtonClicked() {
         self.completed = true
+    }
+    
+    override func toHabitData() -> HabitData {
+        return HabitData(habitType: .geofencedHabit, name: name, id: id, creationDate: creationDate, region: region, completed: completed)
     }
 }

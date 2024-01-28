@@ -12,7 +12,7 @@ struct GeofenceRegion : Codable {
     var center: CLLocationCoordinate2D
     var radius: CLLocationDistance
     var identifier: String
-
+    
     init(center: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String) {
         self.center = center
         self.radius = radius

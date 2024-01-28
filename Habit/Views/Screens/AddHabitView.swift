@@ -107,7 +107,7 @@ struct AddHabitView: View {
                 Spacer()
             }.padding()
             Button(action: {
-                habitVM.addHabit(CountHabit(name: name, goal: goal, activeDays: selectedDays))
+                habitVM.addHabit(CountHabit(name: name,  activeDays: selectedDays, goal: goal))
             }) {
                 Text("ADD HABIT")
                     .fontWeight(.bold)

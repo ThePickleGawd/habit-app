@@ -55,7 +55,16 @@ class Habit: Hashable, ObservableObject {
     }
 
     static func fromHabitData(_ data: HabitData) -> Habit {
-        return Habit(name: data.name, id: data.id, creationDate: data.creationDate)
+        switch data.habitType {
+        case .habit:
+            return Habit(name: data.name, id: data.id, creationDate: data.creationDate)
+        case .countHabit:
+            // Assuming CountHabit is a subclass of Habit
+            return CountHabit(name: data.name, id: data.id, creationDate: data.creationDate, goal: data.goal!)
+        case .geofencedHabit:
+            // Assuming GeofencedHabit is a subclass of Habit
+            return GeofencedHabit(name: data.name, id: data.id, creationDate: data.creationDate, region: data.region!, completed: data.completed!)
+        }
     }
 }
 

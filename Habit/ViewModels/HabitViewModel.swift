@@ -19,14 +19,7 @@ class HabitViewModel: ObservableObject {
         if let data = UserDefaults.standard.data(forKey: "habits"),
            let savedHabitData = try? JSONDecoder().decode([HabitData].self, from: data) {
             self.habits = savedHabitData.map { data in
-                switch data.habitType {
-                case .habit:
-                    return Habit.fromHabitData(data)
-                case .countHabit:
-                    return CountHabit.fromHabitData(data)
-                case .geofencedHabit:
-                    return GeofencedHabit.fromHabitData(data)
-                }
+                return Habit.fromHabitData(data)
             }
         }
     }
