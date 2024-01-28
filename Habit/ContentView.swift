@@ -24,7 +24,7 @@ struct ContentView: View {
                 Image(systemName: "plus.app")
             }
             
-            AnalyticsView(habitVM: habitVM).tabItem {
+            AnalyticsView().tabItem {
                 Image(systemName: "chart.xyaxis.line")
             }
         }.preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)

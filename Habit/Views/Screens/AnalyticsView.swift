@@ -9,14 +9,16 @@ import SwiftUI
 
 struct AnalyticsView: View {
     
-    @ObservedObject var habitVM: HabitViewModel
+    @EnvironmentObject var habitVM: HabitViewModel
     
     var body: some View {
         TabView {
             ForEach(habitVM.habitHistorys, id: \.self) { habitHistory in
-                Text(habitHistory.getTodaysHabit()!.name)
-                    .font(.title.bold())
-                    .frame(maxHeight: .infinity, alignment: .top)
+                VStack {
+                    Text(habitHistory.getTodaysHabit()!.name)
+                        .font(.title.bold())
+                        .frame(maxHeight: .infinity, alignment: .top)
+                }
             }
         }
         .tabViewStyle(.page)
@@ -26,5 +28,5 @@ struct AnalyticsView: View {
 }
 
 #Preview {
-    AnalyticsView(habitVM: HabitViewModel())
+    AnalyticsView()
 }

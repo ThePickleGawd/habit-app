@@ -10,7 +10,6 @@ import SwiftUI
 struct OneHabitAnalytics: View {
     @ObservedObject var habit: Habit
     @EnvironmentObject var habitVM: HabitViewModel
-    @State var date: [DateComponents]
     
     func getReverseHistory() -> [HabitData] {
         return habitVM.habitHistorys.first(
@@ -99,8 +98,4 @@ struct OneHabitAnalytics: View {
             Spacer(minLength: 480)
         }.padding(24)
     }
-}
-
-#Preview {
-    OneHabitAnalytics(habit: Habit(name: "TEST"), date: []).previewSetup()
 }

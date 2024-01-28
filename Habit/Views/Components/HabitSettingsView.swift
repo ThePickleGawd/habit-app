@@ -32,8 +32,7 @@ struct HabitSettingsView: View {
                 })
             }
             .padding(24)
-            Text("Habit Type is: \(habit.toHabitData().habitType.name)")
-            Text("UUID is \(habit.toHabitData().id)")
+            OneHabitAnalytics(habit: Habit(name: "Go to JCC"))
             Spacer()
         }
     }

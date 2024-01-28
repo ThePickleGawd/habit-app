@@ -33,8 +33,6 @@ struct HomeView: View {
                 .padding(.horizontal)
                 .padding(.vertical)
                 
-                Text(locationListener.isInZone ? "Here" : "Not here")
-                
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Habits")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
