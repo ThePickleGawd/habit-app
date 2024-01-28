@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var habitVM: HabitViewModel
+    @EnvironmentObject var locationListener: LocationListener
     @State var showCalendar = false
     
     var body: some View {
@@ -30,6 +31,8 @@ struct HomeView: View {
             }
             .padding(.horizontal)
             .padding(.vertical)
+            
+            Text(locationListener.isInZone ? "Here" : "Not here")
             
             VStack(alignment: .leading, spacing: 16) {
                 Text("Habits")
