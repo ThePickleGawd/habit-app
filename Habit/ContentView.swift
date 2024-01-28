@@ -9,13 +9,14 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
+    @ObservedObject var habitVM = HabitViewModel()
     
     @EnvironmentObject var locationListener: LocationListener
     @State var swipeOffset: CGFloat = 0
         
     var body: some View {
         TabView {
-            HomeView().tabItem {
+            HomeView(habitVM: habitVM).tabItem {
                 Text("Home")
                 Image(systemName: "house")
             }

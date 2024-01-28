@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var viewModel = HabitViewModel()
+    @ObservedObject var habitVM: HabitViewModel
     @State var showCalendar = false
     
     var body: some View {
@@ -35,7 +35,7 @@ struct HomeView: View {
                 Text("Habits")
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .padding(.horizontal)
-                ForEach(viewModel.habits, id: \.self) { habit in
+                ForEach(habitVM.habits, id: \.self) { habit in
                     HabitListItemView(habit: habit)
                 }
             }
@@ -46,5 +46,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView().preferredColorScheme(.dark)
+    HomeView(habitVM: HabitViewModel()).preferredColorScheme(.dark)
 }

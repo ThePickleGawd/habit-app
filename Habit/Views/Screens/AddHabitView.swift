@@ -108,9 +108,6 @@ struct AddHabitView: View {
                             Image(systemName: "map")
                             Text("Choose Location")
                         }
-                        .sheet(isPresented: $isMapPresented) {
-                            // Map Thing
-                        }
                     }
                 }
                 Spacer()
@@ -126,7 +123,7 @@ struct AddHabitView: View {
                     .foregroundColor(.white)
                     .cornerRadius(40)
             }
-            SearchableMap(textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
+            SearchableMap(isPresented: $isMapPresented, textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
                 _ in
             })
         }
