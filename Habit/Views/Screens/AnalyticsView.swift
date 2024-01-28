@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct AnalyticsView: View {
+    
+    @ObservedObject var habitVM: HabitViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView {
+            ForEach(habitVM.habits, id: \.self) { habit in
+                Text(habit.name)
+                    .font(.title.bold())
+                    .frame(maxHeight: .infinity, alignment: .top)
+            }
+        }
+        .tabViewStyle(.page)
+        
+        
     }
 }
 
 #Preview {
-    AnalyticsView()
+    AnalyticsView(habitVM: HabitViewModel())
 }
