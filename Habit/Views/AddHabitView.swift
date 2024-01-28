@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import MapKit
+import Combine
 
 struct Day: Identifiable, Hashable {
     let id: UUID
@@ -16,6 +18,7 @@ struct AddHabitView: View {
     @State private var name: String = ""
     @State private var selectedDays = Set<UUID>()
     @State private var selectedTime = Date.now
+    @State private var isMapPresented = false
     
     private var daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]
     private var days: [Day]
@@ -89,9 +92,25 @@ struct AddHabitView: View {
                         }
                     }
                     VStack() {
-                        DatePicker("Select what time", selection: $selectedTime, displayedComponents: .hourAndMinute)
-                    }.padding()
+                        DatePicker("Start time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                    }.padding(.top)
+                        .padding(.horizontal)
                         .foregroundColor(.white)
+                    VStack() {
+                        DatePicker("End time", selection: $selectedTime, displayedComponents: .hourAndMinute)
+                    }.padding(.horizontal)
+                        .foregroundColor(.white)
+                    VStack {
+                        Button(action: {
+                            isMapPresented.toggle()
+                        }) {
+                            Image(systemName: "map")
+                            Text("Choose Location")
+                        }
+                        .sheet(isPresented: $isMapPresented) {
+                            MapView()
+                        }
+                    }
                 }
                 Spacer()
             }.padding()
@@ -106,6 +125,89 @@ struct AddHabitView: View {
                     .foregroundColor(.white)
                     .cornerRadius(40)
             }
+        }
+        
+    }
+}
+
+struct MapView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    )
+    @State private var searchQuery = ""
+    @State private var searchResults: [MKLocalSearchCompletion] = []
+    @State private var selectedMapItem: MKMapItem?
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                SearchBar(query: $searchQuery, searchResults: searchDelegate)
+                
+                Map(coordinateRegion: $region, showsUserLocation: true)
+                    .onAppear {
+                        // Setup stuff if needed
+                    }
+                    .onChange(of: selectedMapItem) {  newItem in
+                        if let newItem = newItem {
+                            region.center = newItem.placemark.coordinate
+                        }
+                    }
+                    .navigationBarItems(
+                        trailing: Button("Done") {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    )
+                    .navigationBarTitle("Map", displayMode: .inline)
+            }
+            .padding()
+        }
+    }
+}
+
+struct SearchBar: View {
+    @Binding var query: String
+    @ObservedObject var searchDelegate: SearchDelegate
+    
+    init(query: Binding<String>, searchResults: Binding<[MKLocalSearchCompletion]>) {
+        _query = query
+        _searchDelegate = ObservedObject(initialValue: SearchDelegate())
+    }
+    
+    var body: some View {
+        HStack {
+            TextField("Search for a location", text: $query)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Button("Search") {
+                performSearch()
+            }
+        }
+        .padding()
+    }
+    private func performSearch() {
+        let completer = MKLocalSearchCompleter()
+        completer.delegate = searchDelegate
+        completer.queryFragment = query
+    }
+}
+
+class SearchDelegate: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
+    @Published var searchResults: [MKLocalSearchCompletion]
+    
+    override init() {
+        super.init()
+    }
+    
+    init(searchResults: MKLocalSearchCompletion) {
+        _searchResults = searchResults
+    }
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        DispatchQueue.main.async {
+            let completions = completer.results
+            self.searchResults = completer.results
         }
     }
 }
