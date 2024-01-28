@@ -41,7 +41,7 @@ struct HabitData: Codable, Hashable {
         hasher.combine(id)
     }
     
-    init(habitType: HabitType, name: String, id: UUID, creationDate: Date, progress: Int? = nil, goal: Int? = nil, region: GeofenceRegion? = nil, completed: Bool? = nil) {
+    init(habitType: HabitType, name: String, id: UUID, creationDate: Date, progress: Int? = 0, goal: Int? = 0, region: GeofenceRegion? = nil, completed: Bool? = nil) {
         self.habitType = habitType
         self.name = name
         self.id = id
@@ -50,8 +50,6 @@ struct HabitData: Codable, Hashable {
         self.goal = goal
         self.region = region
         self.completed = completed
-        
-        print("Receiving \(id)")
     }
     
     var habitType: HabitType
@@ -79,7 +77,7 @@ class Habit: Hashable, ObservableObject {
     // TODO: Last updated, so if we're past that, delete it and save into history
     
     func getProgressString() -> String { return "Invalid" }
-    func actionButtonClicked() {}
+    func actionButtonClicked() { }
     
     init(name: String, id: UUID = UUID(), creationDate: Date = Date(), activeDays: Set<Weekday> = [], habitHistory: [HabitData] = []) {
         self.id = id
@@ -106,9 +104,9 @@ class Habit: Hashable, ObservableObject {
         case .habit:
             return Habit(name: data.name, id: data.id, creationDate: data.creationDate)
         case .countHabit:
-            return CountHabit(name: data.name, id: data.id, creationDate: data.creationDate, goal: data.goal!)
+            return CountHabit(name: data.name, id: data.id, creationDate: data.creationDate, goal: data.goal!, progress: data.progress!)
         case .geofencedCountHabit:
-            return GeofencedCountHabit(name: data.name, id: data.id, creationDate: data.creationDate, region: data.region!, goal: data.goal!)
+            return GeofencedCountHabit(name: data.name, id: data.id, creationDate: data.creationDate, region: data.region!, goal: data.goal!, progress: data.progress!)
         case .timedHabit: // TODO: Actually do
             return Habit(name: data.name, id: data.id, creationDate: data.creationDate)
         case .geofencedTimeHabit:

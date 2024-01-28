@@ -4,10 +4,12 @@ import SwiftUI
 public struct SearchableMap: View {
     @ObservedObject private var viewModel: SearchableMapViewModel
     @Binding var isPresented: Bool
+    @Binding var selectedGeofence: GeofenceRegion
     
-    public init(isPresented: Binding<Bool>, textFieldPlaceHolder: String, search: Binding<String>, onSelectResult: @escaping (SearchResult) -> Void) {
+    init(isPresented: Binding<Bool>, textFieldPlaceHolder: String, search: Binding<String>, onSelectResult: @escaping (SearchResult) -> Void, selectedGeofence: Binding<GeofenceRegion>) {
         self.viewModel = SearchableMapViewModel(searchService: SearchLocationServiceFactory.make(), searchPlaceHolder: textFieldPlaceHolder, onSelectResult: onSelectResult)
         self._isPresented = isPresented
+        self._selectedGeofence = selectedGeofence
     }
     
     public var body: some View {
@@ -38,29 +40,31 @@ public struct SearchableMap: View {
                     }
                 }
                 
-                HStack {
-                    Button(action: {
-                        isPresented = false
-                    }) {
-                        Text("Cancel")
-                            .padding()
-                            .background(Theme.Color.gray600.opacity(0.9))
-                            .cornerRadius(16)
-                    }
-                    .padding(.horizontal)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        isPresented = false
-                    }) {
-                        Text("Done")
-                            .padding()
-                            .background(Theme.Color.gray600.opacity(0.9))
-                            .cornerRadius(16)
-                    }
-                    .padding(.horizontal)
+            }
+            HStack {
+                Button(action: {
+                    isPresented = false
+                }) {
+                    Text("Cancel")
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .background(Theme.Color.gray600.opacity(0.9))
+                        .cornerRadius(16)
                 }
+                .padding(.horizontal)
+                
+                Spacer()
+                
+                Button(action: {
+                    isPresented = false
+                }) {
+                    Text("Done")
+                        .padding(.horizontal)
+                        .padding(.vertical, 8)
+                        .background(Theme.Color.gray600.opacity(0.9))
+                        .cornerRadius(16)
+                }
+                .padding(.horizontal)
             }
         }
     }
@@ -69,5 +73,9 @@ public struct SearchableMap: View {
         withAnimation(.easeInOut(duration: 0.3)) {
             viewModel.tapOnMap(coordinate: coordinate)
         }
+        
+        let geofenceRadius: CLLocationDistance = 50
+        let geofenceIdentifier = "Geofence_\(coordinate.latitude)_\(coordinate.longitude)"
+        _selectedGeofence.wrappedValue = GeofenceRegion(center: coordinate, radius: geofenceRadius, identifier: geofenceIdentifier)
     }
 }
