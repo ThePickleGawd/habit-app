@@ -36,8 +36,10 @@ struct HabitListItemView: View {
                 Spacer()
                     .padding(.horizontal)
                 IconButtonView(systemName: "plus", action: {
+                    print("HabitListenItemView - Before: \(habit.toHabitData().progress!)")
                     habit.actionButtonClicked()
-                    habitVM.saveHabitHistorys()
+                    habitVM.updateHabit(habit)
+                    print("HabitListenItemView - After: \(habit.toHabitData().progress!)")
                 })
             }
             .padding(16)

@@ -28,11 +28,14 @@ struct HabitSettingsView: View {
                 })
                 
                 IconButtonView(systemName: "trash", action: {
-                    print("Trying to delete \(habit.id)")
                     habitVM.deleteHabit(habit)
                 })
             }
             .padding(24)
+            Text("Habit Type is: \(habit.toHabitData().habitType.name)")
+            if(habit.toHabitData().habitType == .geofencedCountHabit) {
+                Text("habt is geo")
+            }
             Spacer()
         }
     }

@@ -12,7 +12,6 @@ import SwiftUI
 
 class LocationListener: ObservableObject {
     @Published var isInZone = false
-    @Published var locationLat = 0
 }
 
 class SceneDelegate: NSObject, UIWindowSceneDelegate {
@@ -23,7 +22,6 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     let locationManager = CLLocationManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         let contentView = ContentView()
         
         if let windowScene = scene as? UIWindowScene {
@@ -36,12 +34,10 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // Make sure to add necessary info.plist entries
         
-        let locationCoordinates = CLLocationCoordinate2D(latitude: 29.9792, longitude: 31.1342) // Pyramids of Giza
-        startMonitorRegionAtLocation(center: locationCoordinates, identifier: "Pyramids of Giza")
+        self.refreshGeofences()
     }
     
     func startMonitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) {
-        print("Registering")
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             let maxDistance = locationManager.maximumRegionMonitoringDistance
             
@@ -52,7 +48,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
             region.notifyOnExit = true
             
             locationManager.startMonitoring(for: region)
-            print("Okay")
+            print("started to monitor")
         }
     }
 }
@@ -62,11 +58,25 @@ extension SceneDelegate : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         locationListener.isInZone = true
         
-        if UIApplication.shared.applicationState == .active {
-            print("Location good with app open")
+        // Attempt to find a habit that matches the region's identifier.
+        if let updatedHabit = habitVM.habitHistorys.compactMap({ habitHistory -> Habit? in
+            let habitData = habitHistory.getTodaysHabitData()
+            if let region = habitData.region, region.identifier == region.identifier {
+                return habitHistory.getTodaysHabit()
+            } else {
+                return nil
+            }
+        }).first {
+            updatedHabit.actionButtonClicked()
+            habitVM.updateHabit(updatedHabit)
         } else {
-            print("Should send notification")
-            let body = "Behold the " + region.identifier + "in all their eternal majesty!"
+            print("No matching habit found")
+        }
+        
+        if UIApplication.shared.applicationState == .active {
+            // App is open so we good bro
+        } else {
+            let body = "Welcome to " + region.identifier + "!"
             let notificationContent = UNMutableNotificationContent()
             notificationContent.body = body
             notificationContent.sound = .default
@@ -82,7 +92,6 @@ extension SceneDelegate : CLLocationManagerDelegate {
                 }
             }
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -90,7 +99,7 @@ extension SceneDelegate : CLLocationManagerDelegate {
         locationListener.isInZone = false
         
         if UIApplication.shared.applicationState == .active {
-            print("you have left the pyramids")
+            print("you have left")
         } else {
             let body = "You left " + region.identifier
             let notificationContent = UNMutableNotificationContent()
@@ -109,4 +118,25 @@ extension SceneDelegate : CLLocationManagerDelegate {
             }
         }
     }
+}
+
+extension SceneDelegate: GeofenceSetupDelegate {
+    func refreshGeofences() {
+        locationManager.monitoredRegions.forEach { locationManager.stopMonitoring(for: $0) }
+        
+        // Setup geofence delegates on load
+        for habitHistory in habitVM.habitHistorys {
+            if let todaysHabit = habitHistory.getTodaysHabit() {
+                let habitData = todaysHabit.toHabitData()
+                if habitData.habitType == .geofencedTimeHabit || habitData.habitType == .geofencedCountHabit {
+                    print("\(habitData.name) - Lat: \(habitData.region!.center.latitude) Long: \(habitData.region!.center.longitude)")
+                    startMonitorRegionAtLocation(center: habitData.region!.center, identifier: habitData.region!.identifier)
+                }
+            }
+        }
+    }
+}
+
+protocol GeofenceSetupDelegate {
+    func refreshGeofences()
 }
