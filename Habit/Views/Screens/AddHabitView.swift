@@ -123,9 +123,12 @@ struct AddHabitView: View {
                     .foregroundColor(.white)
                     .cornerRadius(40)
             }
-            SearchableMap(isPresented: $isMapPresented, textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
-                _ in
-            })
+            if isMapPresented {
+            
+                SearchableMap(isPresented: $isMapPresented, textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
+                    _ in
+                })
+            }
         }
         
     }

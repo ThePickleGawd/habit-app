@@ -11,7 +11,7 @@ public struct SearchableMap: View {
     }
     
     public var body: some View {
-        ZStack {
+        ZStack(alignment: .topTrailing) {
             Map(position: $viewModel.position, interactionModes: .all) {
                 if let selectedSearchLocation = viewModel.selectedSearchLocation {
                     Marker(selectedSearchLocation.name, systemImage: "fork.knife", coordinate: selectedSearchLocation.coordinate)
@@ -34,7 +34,11 @@ public struct SearchableMap: View {
                 isPresented = false
             }) {
                 Text("Done")
+                    .padding()
+                    .background(Theme.Color.gray600.opacity(0.9))
+                    .cornerRadius(16)
             }
+            .padding(.horizontal)
         }
     }
 }
