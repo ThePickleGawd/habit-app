@@ -33,9 +33,7 @@ struct ContentView: View {
             }.tabItem {
                 Image(systemName: "house")
             }
-            VStack {
-                Text("Test")
-            }.tabItem {
+            AddHabitView().tabItem {
                 Image(systemName: "plus.app")
             }
             
@@ -51,5 +49,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    ContentView().background(Theme.Color.gray800)
 }
