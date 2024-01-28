@@ -16,13 +16,16 @@ struct ContentView: View {
     var body: some View {
         TabView {
             HomeView().tabItem {
+                Text("Home")
                 Image(systemName: "house")
             }
             AddHabitView().tabItem {
+                Text("Add Habit")
                 Image(systemName: "plus.app")
             }
             
             AnalyticsView().tabItem {
+                Text("Analytics")
                 Image(systemName: "chart.xyaxis.line")
             }
         }.preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
