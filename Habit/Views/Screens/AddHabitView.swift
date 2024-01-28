@@ -19,12 +19,13 @@ struct AddHabitView: View {
     @State private var selectedDays = Set<UUID>()
     @State private var selectedTime = Date.now
     @State private var isMapPresented = false
+    @State private var mapSearch: String = ""
     
     private var daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]
     private var days: [Day]
     
     init() {
-            days = daysOfWeek.map { Day(id: UUID(), name: $0) }
+        days = daysOfWeek.map { Day(id: UUID(), name: $0) }
     }
     
     var body: some View {
@@ -126,6 +127,9 @@ struct AddHabitView: View {
                     .cornerRadius(40)
             }
         }
+        SearchableMap(textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
+            _ in
+        })
         
     }
 }

@@ -24,9 +24,13 @@
 		FC4923142B662DDE001DADFA /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923132B662DDE001DADFA /* HabitViewModel.swift */; };
 		FC4923182B662F17001DADFA /* HabitListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923172B662F17001DADFA /* HabitListItemView.swift */; };
 		FC49231A2B6633BA001DADFA /* CountHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923192B6633B9001DADFA /* CountHabit.swift */; };
-		FDDA552B2B66548B002D5E54 /* SearchableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDA552A2B66548B002D5E54 /* SearchableMap.swift */; };
-		FDDA552D2B6654C1002D5E54 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDA552C2B6654C1002D5E54 /* SheetView.swift */; };
-		FDDA552F2B6654E0002D5E54 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDA552E2B6654E0002D5E54 /* LocationService.swift */; };
+		FC4923222B6658EE001DADFA /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923212B6658EE001DADFA /* DataAccess.swift */; };
+		FC4923242B665910001DADFA /* MapKitDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923232B665910001DADFA /* MapKitDataAccess.swift */; };
+		FC4923262B665925001DADFA /* SearchLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923252B665925001DADFA /* SearchLocationService.swift */; };
+		FC4923282B665935001DADFA /* SearchLocationServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923272B665935001DADFA /* SearchLocationServiceFactory.swift */; };
+		FC49232A2B66594B001DADFA /* SearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923292B66594B001DADFA /* SearchSheet.swift */; };
+		FC49232C2B66597C001DADFA /* SearchableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49232B2B66597C001DADFA /* SearchableMap.swift */; };
+		FC49232E2B66598B001DADFA /* SearchableMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49232D2B66598B001DADFA /* SearchableMapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +53,13 @@
 		FC4923132B662DDE001DADFA /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		FC4923172B662F17001DADFA /* HabitListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListItemView.swift; sourceTree = "<group>"; };
 		FC4923192B6633B9001DADFA /* CountHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountHabit.swift; sourceTree = "<group>"; };
-		FDDA552A2B66548B002D5E54 /* SearchableMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableMap.swift; sourceTree = "<group>"; };
-		FDDA552C2B6654C1002D5E54 /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
-		FDDA552E2B6654E0002D5E54 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		FC4923212B6658EE001DADFA /* DataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccess.swift; sourceTree = "<group>"; };
+		FC4923232B665910001DADFA /* MapKitDataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitDataAccess.swift; sourceTree = "<group>"; };
+		FC4923252B665925001DADFA /* SearchLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationService.swift; sourceTree = "<group>"; };
+		FC4923272B665935001DADFA /* SearchLocationServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationServiceFactory.swift; sourceTree = "<group>"; };
+		FC4923292B66594B001DADFA /* SearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSheet.swift; sourceTree = "<group>"; };
+		FC49232B2B66597C001DADFA /* SearchableMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableMap.swift; sourceTree = "<group>"; };
+		FC49232D2B66598B001DADFA /* SearchableMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableMapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				FC4922FB2B65C4F2001DADFA /* Models */,
-				FC4923122B662DC0001DADFA /* View Models */,
+				FC4923122B662DC0001DADFA /* ViewModels */,
 				FC4923052B65C7E7001DADFA /* Views */,
 				FC4922F62B65C39D001DADFA /* Info.plist */,
 				FC4922EA2B65C350001DADFA /* ContentView.swift */,
@@ -109,21 +117,22 @@
 		FC4922FB2B65C4F2001DADFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FC4923202B6658AD001DADFA /* SearchLocationService */,
 				FC49231B2B6637A4001DADFA /* Util */,
-				FC4923022B65C658001DADFA /* Custom Habits */,
+				FC4923022B65C658001DADFA /* CustomHabits */,
 				FC4922FC2B65C52D001DADFA /* Habit.swift */,
 				FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		FC4923022B65C658001DADFA /* Custom Habits */ = {
+		FC4923022B65C658001DADFA /* CustomHabits */ = {
 			isa = PBXGroup;
 			children = (
 				FC4922FE2B65C538001DADFA /* GeofencedHabit.swift */,
 				FC4923192B6633B9001DADFA /* CountHabit.swift */,
 			);
-			path = "Custom Habits";
+			path = CustomHabits;
 			sourceTree = "<group>";
 		};
 		FC4923052B65C7E7001DADFA /* Views */ = {
@@ -135,20 +144,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FC4923122B662DC0001DADFA /* View Models */ = {
+		FC4923122B662DC0001DADFA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				FC49232D2B66598B001DADFA /* SearchableMapViewModel.swift */,
 				FC4923132B662DDE001DADFA /* HabitViewModel.swift */,
 			);
-			path = "View Models";
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FC4923152B662EED001DADFA /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				FDDA55292B665464002D5E54 /* Map */,
 				FC49230A2B65D03A001DADFA /* IconButtonView.swift */,
 				FC4923172B662F17001DADFA /* HabitListItemView.swift */,
+				FC4923292B66594B001DADFA /* SearchSheet.swift */,
+				FC49232B2B66597C001DADFA /* SearchableMap.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -171,14 +182,15 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		FDDA55292B665464002D5E54 /* Map */ = {
+		FC4923202B6658AD001DADFA /* SearchLocationService */ = {
 			isa = PBXGroup;
 			children = (
-				FDDA552A2B66548B002D5E54 /* SearchableMap.swift */,
-				FDDA552C2B6654C1002D5E54 /* SheetView.swift */,
-				FDDA552E2B6654E0002D5E54 /* LocationService.swift */,
+				FC4923212B6658EE001DADFA /* DataAccess.swift */,
+				FC4923232B665910001DADFA /* MapKitDataAccess.swift */,
+				FC4923252B665925001DADFA /* SearchLocationService.swift */,
+				FC4923272B665935001DADFA /* SearchLocationServiceFactory.swift */,
 			);
-			path = Map;
+			path = SearchLocationService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,24 +263,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4923262B665925001DADFA /* SearchLocationService.swift in Sources */,
 				FC4922FF2B65C538001DADFA /* GeofencedHabit.swift in Sources */,
 				FC4923092B65C842001DADFA /* AddHabitView.swift in Sources */,
 				FC49230F2B662819001DADFA /* AnalyticsView.swift in Sources */,
 				FC4922F82B65C3B1001DADFA /* AppDelegate.swift in Sources */,
+				FC4923282B665935001DADFA /* SearchLocationServiceFactory.swift in Sources */,
 				FC4923182B662F17001DADFA /* HabitListItemView.swift in Sources */,
 				FC4922EB2B65C350001DADFA /* ContentView.swift in Sources */,
-				FDDA552B2B66548B002D5E54 /* SearchableMap.swift in Sources */,
 				FC4922FD2B65C52D001DADFA /* Habit.swift in Sources */,
+				FC4923222B6658EE001DADFA /* DataAccess.swift in Sources */,
+				FC4923242B665910001DADFA /* MapKitDataAccess.swift in Sources */,
+				FC49232A2B66594B001DADFA /* SearchSheet.swift in Sources */,
 				FC49230B2B65D03A001DADFA /* IconButtonView.swift in Sources */,
+				FC49232C2B66597C001DADFA /* SearchableMap.swift in Sources */,
 				FC4923012B65C645001DADFA /* HabitHistoryEntry.swift in Sources */,
 				FC49230D2B65D68B001DADFA /* Theme.swift in Sources */,
 				FC49231A2B6633BA001DADFA /* CountHabit.swift in Sources */,
 				FC4923112B66285E001DADFA /* HomeView.swift in Sources */,
 				FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */,
+				FC49232E2B66598B001DADFA /* SearchableMapViewModel.swift in Sources */,
 				FC4923042B65C79B001DADFA /* GeofenceRegion.swift in Sources */,
 				FC4923142B662DDE001DADFA /* HabitViewModel.swift in Sources */,
-				FDDA552F2B6654E0002D5E54 /* LocationService.swift in Sources */,
-				FDDA552D2B6654C1002D5E54 /* SheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
