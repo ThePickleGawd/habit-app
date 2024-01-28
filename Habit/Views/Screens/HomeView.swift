@@ -39,8 +39,8 @@ struct HomeView: View {
                     Text("Habits")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .padding(.horizontal)
-                    ForEach(habitVM.habits, id: \.self) { habit in
-                        HabitListItemView(habit: habit)
+                    ForEach(habitVM.habitHistorys, id: \.self) { habitHistory in
+                        HabitListItemView(habit: habitHistory.getTodaysHabit()!)
                     }
                 }
             }

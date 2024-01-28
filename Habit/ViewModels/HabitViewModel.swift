@@ -9,43 +9,45 @@ import Foundation
 import SwiftUI
 
 class HabitViewModel: ObservableObject {
-    @Published var habits: [Habit] = []
+    @Published var habitHistorys: [HabitHistory] = []
 
     init() {
-        loadHabits()
+        loadHabitHistorys()
     }
 
-    func loadHabits() {
-        if let data = UserDefaults.standard.data(forKey: "habits"),
-           let savedHabitData = try? JSONDecoder().decode([HabitData].self, from: data) {
-            self.habits = savedHabitData.map { data in
-                return Habit.fromHabitData(data)
+    func loadHabitHistorys() {
+        if let historyData = UserDefaults.standard.data(forKey: "habitHistorys"),
+           let savedHabitHistory = try? JSONDecoder().decode([HabitHistory].self, from: historyData) {
+            self.habitHistorys = savedHabitHistory.map { history in
+                print("Loading \(history.getTodaysHabit()!.id)")
+                return history
             }
         }
     }
     
-    func saveHabits() {
-        let habitDataArray = habits.map { $0.toHabitData() }
-        if let encoded = try? JSONEncoder().encode(habitDataArray) {
-            UserDefaults.standard.set(encoded, forKey: "habits")
+    func saveHabitHistorys() {
+        if let encoded = try? JSONEncoder().encode(habitHistorys) {
+            UserDefaults.standard.set(encoded, forKey: "habitHistorys")
         }
     }
 
     func addHabit(_ habit: Habit) {
-        habits.append(habit)
-        saveHabits()
+        var history = HabitHistory()
+        history.addHabit(habit: habit.toHabitData())
+        habitHistorys.append(history)
+        saveHabitHistorys()
     }
 
     func updateHabit(_ habit: Habit) {
-        if let index = habits.firstIndex(where: { $0.id == habit.id }) {
-            habits[index] = habit
-            saveHabits()
+        if let index = habitHistorys.firstIndex(where: { $0.getTodaysHabitData().id == habit.id }) {
+            habitHistorys[index].history[habitHistorys.count - 1] = habit.toHabitData()
+            saveHabitHistorys()
         }
     }
 
     func deleteHabit(_ habit: Habit) {
-        habits.removeAll { $0.id == habit.id }
-        saveHabits()
+        habitHistorys.removeAll { $0.getTodaysHabitData().id == habit.id }
+        saveHabitHistorys()
     }
 
     // Other methods...

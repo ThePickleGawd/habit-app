@@ -7,7 +7,53 @@
 
 import Foundation
 
-struct HabitData: Codable {
+struct HabitHistory: Codable, Hashable {
+    static func == (lhs: HabitHistory, rhs: HabitHistory) -> Bool {
+        return lhs.unique_id == rhs.unique_id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(unique_id)
+    }
+    
+    var unique_id: UUID = UUID()
+    var history: [HabitData] = [] // should have one entry when initialized
+    var lastUpdated: Date = Date()
+
+    mutating func addHabit(habit: HabitData) {
+        self.history.append(habit)
+        self.lastUpdated = Date()
+    }
+
+    func getTodaysHabitData() -> HabitData {
+        return history.last!
+    }
+    
+    func getTodaysHabit() -> Habit? {
+        return Habit.fromHabitData(history.last!)
+    }
+}
+
+struct HabitData: Codable, Hashable {
+    static func == (lhs: HabitData, rhs: HabitData) -> Bool {
+        return lhs.id == rhs.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    init(habitType: HabitType, name: String, id: UUID, creationDate: Date, progress: Int? = nil, goal: Int? = nil, region: GeofenceRegion? = nil, completed: Bool? = nil) {
+        self.habitType = habitType
+        self.name = name
+        self.id = id
+        self.creationDate = creationDate
+        self.progress = progress
+        self.goal = goal
+        self.region = region
+        self.completed = completed
+        
+        print("Receiving \(id)")
+    }
+    
     var habitType: HabitType
     
     // Habit
@@ -22,7 +68,6 @@ struct HabitData: Codable {
     // GeofencedHabit
     var region: GeofenceRegion?
     var completed: Bool?
-    
 }
 
 class Habit: Hashable, ObservableObject {
@@ -31,10 +76,12 @@ class Habit: Hashable, ObservableObject {
     var creationDate = Date()
     var activeDays: Set<Weekday> = []
     
+    // TODO: Last updated, so if we're past that, delete it and save into history
+    
     func getProgressString() -> String { return "Invalid" }
     func actionButtonClicked() {}
     
-    init(name: String, id: UUID = UUID(),creationDate: Date = Date(), activeDays: Set<Weekday> = []) {
+    init(name: String, id: UUID = UUID(), creationDate: Date = Date(), activeDays: Set<Weekday> = [], habitHistory: [HabitData] = []) {
         self.id = id
         self.creationDate = creationDate
         self.name = name

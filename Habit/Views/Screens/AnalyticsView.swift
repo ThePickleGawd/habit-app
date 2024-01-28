@@ -13,8 +13,8 @@ struct AnalyticsView: View {
     
     var body: some View {
         TabView {
-            ForEach(habitVM.habits, id: \.self) { habit in
-                Text(habit.name)
+            ForEach(habitVM.habitHistorys, id: \.self) { habitHistory in
+                Text(habitHistory.getTodaysHabit()!.name)
                     .font(.title.bold())
                     .frame(maxHeight: .infinity, alignment: .top)
             }

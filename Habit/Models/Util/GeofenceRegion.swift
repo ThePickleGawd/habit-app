@@ -8,7 +8,14 @@
 import Foundation
 import CoreLocation
 
-struct GeofenceRegion : Codable {
+struct GeofenceRegion : Codable, Hashable {
+    static func == (lhs: GeofenceRegion, rhs: GeofenceRegion) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
+    
     var center: CLLocationCoordinate2D
     var radius: CLLocationDistance
     var identifier: String

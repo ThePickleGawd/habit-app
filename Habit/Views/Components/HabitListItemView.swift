@@ -37,7 +37,7 @@ struct HabitListItemView: View {
                     .padding(.horizontal)
                 IconButtonView(systemName: "plus", action: {
                     habit.actionButtonClicked()
-                    habitVM.saveHabits()
+                    habitVM.saveHabitHistorys()
                 })
             }
             .padding(16)
@@ -45,7 +45,7 @@ struct HabitListItemView: View {
             .cornerRadius(24)
         }
         .sheet(isPresented: $habitSettingsOpen) {
-            HabitSettingsView(isPresented: $habitSettingsOpen)
+            HabitSettingsView(habit: habit, isPresented: $habitSettingsOpen)
         }
     }
 }

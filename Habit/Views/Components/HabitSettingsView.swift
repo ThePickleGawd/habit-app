@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct HabitSettingsView: View {
-    @Binding var isPresented: Bool
+    @EnvironmentObject var habitVM: HabitViewModel
     
-    init(isPresented: Binding<Bool> = .constant(false)) {
-            self._isPresented = isPresented
-        }
+    @ObservedObject var habit: Habit
+    @Binding var isPresented: Bool
     
     var body: some View {
         VStack {
             HStack {
-                Text("Habit Name")
+                Text(habit.name)
                     .font(.system(size: 24))
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .foregroundStyle(.white)
@@ -27,14 +26,14 @@ struct HabitSettingsView: View {
                 IconButtonView(systemName: "pencil", action: {
                     
                 })
+                
+                IconButtonView(systemName: "trash", action: {
+                    print("Trying to delete \(habit.id)")
+                    habitVM.deleteHabit(habit)
+                })
             }
             .padding(24)
             Spacer()
         }
     }
-}
-
-#Preview {
-    HabitSettingsView()
-        .previewSetup()
 }
