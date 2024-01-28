@@ -7,18 +7,8 @@
 
 import Foundation
 
-class Habit: Identifiable, ObservableObject {
+struct Habit: Identifiable {
     var id = UUID()
     var title: String
     var creationDate: Date
-    @Published var history: [HabitHistoryEntry] = []
-
-    init(title: String, creationDate: Date = Date()) {
-        self.title = title
-        self.creationDate = creationDate
-    }
-
-    func addHistoryEntry(_ entry: HabitHistoryEntry) {
-        history.append(entry)
-    }
 }
