@@ -143,7 +143,7 @@ struct MapView: View {
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(query: $searchQuery, searchResults: searchDelegate)
+                SearchBar(query: $searchQuery, searchResults: $searchResults)
                 
                 Map(coordinateRegion: $region, showsUserLocation: true)
                     .onAppear {
@@ -194,14 +194,14 @@ struct SearchBar: View {
 }
 
 class SearchDelegate: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
-    @Published var searchResults: [MKLocalSearchCompletion]
+    @Published var searchResults: [MKLocalSearchCompletion] = []
     
     override init() {
         super.init()
     }
     
     init(searchResults: MKLocalSearchCompletion) {
-        _searchResults = searchResults
+        self.searchResults = [searchResults]
     }
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
