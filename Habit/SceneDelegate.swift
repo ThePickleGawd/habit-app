@@ -18,7 +18,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     @ObservedObject var habitVM = HabitViewModel()
     
     var window: UIWindow?
-    var isInZone = LocationListener()
+    var locationListener = LocationListener()
     let locationManager = CLLocationManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -27,7 +27,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(isInZone).environmentObject(habitVM))
+            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(locationListener).environmentObject(habitVM))
             self.window = window
             window.makeKeyAndVisible()
         }
@@ -40,7 +40,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     }
     
     func startMonitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) {
-        
+        print("Registering")
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
            
             let maxDistance = locationManager.maximumRegionMonitoringDistance
@@ -60,7 +60,7 @@ extension SceneDelegate : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
-        isInZone.isInZone = true
+        locationListener.isInZone = true
 
         if UIApplication.shared.applicationState == .active {
             print("behold the pyramids in all their eternal majesty")
@@ -86,7 +86,7 @@ extension SceneDelegate : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         
-        isInZone.isInZone = false
+        locationListener.isInZone = false
 
         if UIApplication.shared.applicationState == .active {
             print("you have left the pyramids")
