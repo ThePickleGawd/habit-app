@@ -108,7 +108,7 @@ struct AddHabitView: View {
                             Text("Choose Location")
                         }
                         .sheet(isPresented: $isMapPresented) {
-                            MapView()
+                            // Map Thing
                         }
                     }
                 }
@@ -130,87 +130,6 @@ struct AddHabitView: View {
     }
 }
 
-struct MapView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    )
-    @State private var searchQuery = ""
-    @State private var searchResults: [MKLocalSearchCompletion] = []
-    @State private var selectedMapItem: MKMapItem?
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                SearchBar(query: $searchQuery, searchResults: $searchResults)
-                
-                Map(coordinateRegion: $region, showsUserLocation: true)
-                    .onAppear {
-                        // Setup stuff if needed
-                    }
-                    .onChange(of: selectedMapItem) {  newItem in
-                        if let newItem = newItem {
-                            region.center = newItem.placemark.coordinate
-                        }
-                    }
-                    .navigationBarItems(
-                        trailing: Button("Done") {
-                            presentationMode.wrappedValue.dismiss()
-                        }
-                    )
-                    .navigationBarTitle("Map", displayMode: .inline)
-            }
-            .padding()
-        }
-    }
-}
-
-struct SearchBar: View {
-    @Binding var query: String
-    @ObservedObject var searchDelegate: SearchDelegate
-    
-    init(query: Binding<String>, searchResults: Binding<[MKLocalSearchCompletion]>) {
-        _query = query
-        _searchDelegate = ObservedObject(initialValue: SearchDelegate())
-    }
-    
-    var body: some View {
-        HStack {
-            TextField("Search for a location", text: $query)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Button("Search") {
-                performSearch()
-            }
-        }
-        .padding()
-    }
-    private func performSearch() {
-        let completer = MKLocalSearchCompleter()
-        completer.delegate = searchDelegate
-        completer.queryFragment = query
-    }
-}
-
-class SearchDelegate: NSObject, ObservableObject, MKLocalSearchCompleterDelegate {
-    @Published var searchResults: [MKLocalSearchCompletion] = []
-    
-    override init() {
-        super.init()
-    }
-    
-    init(searchResults: MKLocalSearchCompletion) {
-        self.searchResults = [searchResults]
-    }
-    
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        DispatchQueue.main.async {
-            let completions = completer.results
-            self.searchResults = completer.results
-        }
-    }
-}
 
 #Preview {
     AddHabitView().preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
