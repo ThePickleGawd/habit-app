@@ -38,5 +38,5 @@ struct HabitListItemView: View {
 }
 
 #Preview {
-    HabitListItemView(habit: CountHabit(name: "Test", goal: 1)).preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/).padding()
+    HabitListItemView(habit: CountHabit(name: "Test", goal: 1, activeDays: [])).preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/).padding()
 }

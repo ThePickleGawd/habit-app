@@ -11,10 +11,10 @@ class CountHabit : Habit {
     @Published var progress: Int = 0
     @Published var goal: Int
     
-    init(name: String, goal: Int) {
+    init(name: String, goal: Int, activeDays: Set<Weekday>) {
         self.goal = goal
         
-        super.init(name: name)
+        super.init(name: name, activeDays: activeDays)
     }
     
     override func getProgressString() -> String {

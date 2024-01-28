@@ -12,7 +12,7 @@ class GeofencedHabit : Habit {
     @Published var region: GeofenceRegion
     @Published var completed: Bool
     
-    init(name: String, region: GeofenceRegion) {
+    init(name: String, region: GeofenceRegion, activeDays: Set<Weekday>) {
         self.region = region
         self.completed = false
         

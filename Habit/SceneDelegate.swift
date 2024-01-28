@@ -15,6 +15,7 @@ class LocationListener: ObservableObject {
 }
 
 class SceneDelegate: NSObject, UIWindowSceneDelegate {
+    @ObservedObject var habitVM = HabitViewModel()
     
     var window: UIWindow?
     var isInZone = LocationListener()
@@ -26,7 +27,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView:  contentView.environmentObject(isInZone))
+            window.rootViewController = UIHostingController(rootView: contentView.environmentObject(isInZone).environmentObject(habitVM))
             self.window = window
             window.makeKeyAndVisible()
         }

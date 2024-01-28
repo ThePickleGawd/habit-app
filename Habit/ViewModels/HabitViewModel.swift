@@ -8,9 +8,7 @@
 import Foundation
 import SwiftUI
 
-
 class HabitViewModel: ObservableObject {
-    // Published property to update views automatically when habits change
     @Published var habits: [Habit] = []
 
     init() {
@@ -18,36 +16,44 @@ class HabitViewModel: ObservableObject {
     }
 
     func loadHabits() {
-        // Load habits from persistent storage
-        // This is just a placeholder logic, replace with actual data fetching
-        self.habits = [
-            CountHabit(name: "Basketball", goal: 1),
-            CountHabit(name: "Drink Water", goal: 8),
-            CountHabit(name: "Gym", goal: 1)
-            // Add more sample habits
-        ]
+        if let data = UserDefaults.standard.data(forKey: "habits"),
+           let savedHabitData = try? JSONDecoder().decode([HabitData].self, from: data) {
+            self.habits = savedHabitData.map { data in
+                switch data.habitType {
+                case .habit:
+                    return Habit.fromHabitData(data)
+                case .countHabit:
+                    return CountHabit.fromHabitData(data)
+                case .geofencedHabit:
+                    return GeofencedHabit.fromHabitData(data)
+                }
+            }
+        }
+    }
+    
+    func saveHabits() {
+        let habitDataArray = habits.map { $0.toHabitData() }
+        if let encoded = try? JSONEncoder().encode(habitDataArray) {
+            UserDefaults.standard.set(encoded, forKey: "habits")
+        }
     }
 
     func addHabit(_ habit: Habit) {
-        // Logic to add a new habit
-        // Replace with actual implementation
         habits.append(habit)
+        saveHabits()
     }
 
     func updateHabit(_ habit: Habit) {
-        // Logic to update an existing habit
-        // Replace with actual implementation
         if let index = habits.firstIndex(where: { $0.id == habit.id }) {
             habits[index] = habit
+            saveHabits()
         }
     }
 
     func deleteHabit(_ habit: Habit) {
-        // Logic to delete a habit
-        // Replace with actual implementation
         habits.removeAll { $0.id == habit.id }
+        saveHabits()
     }
 
-    // Add other methods for additional functionalities
+    // Other methods...
 }
-

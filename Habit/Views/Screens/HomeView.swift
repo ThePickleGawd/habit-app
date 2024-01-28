@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var habitVM: HabitViewModel
+    @EnvironmentObject var habitVM: HabitViewModel
     @State var showCalendar = false
     
     var body: some View {
@@ -46,5 +46,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(habitVM: HabitViewModel()).preferredColorScheme(.dark)
+    HomeView().previewSetup()
 }
