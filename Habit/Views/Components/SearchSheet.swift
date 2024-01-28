@@ -41,7 +41,7 @@ struct SearchSheet: View {
             .modifier(TextFieldGrayBackgroundColor())
             
             if results.isEmpty {
-                ContentUnavailableView("Get started by searching for a restaurant", systemImage: "fork.knife")
+                ContentUnavailableView("Pick a location", systemImage: "location")
             } else {
                 List {
                     ForEach(results) { result in

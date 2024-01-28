@@ -126,10 +126,10 @@ struct AddHabitView: View {
                     .foregroundColor(.white)
                     .cornerRadius(40)
             }
+            SearchableMap(textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
+                _ in
+            })
         }
-        SearchableMap(textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
-            _ in
-        })
         
     }
 }
