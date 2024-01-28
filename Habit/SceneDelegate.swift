@@ -48,7 +48,6 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
             region.notifyOnExit = true
             
             locationManager.startMonitoring(for: region)
-            print("started to monitor")
         }
     }
 }
@@ -67,6 +66,7 @@ extension SceneDelegate : CLLocationManagerDelegate {
                 return nil
             }
         }).first {
+            print("Name of new habit \(updatedHabit.name)")
             updatedHabit.actionButtonClicked()
             habitVM.updateHabit(updatedHabit)
         } else {

@@ -79,7 +79,7 @@ class Habit: Hashable, ObservableObject {
     func getProgressString() -> String { return "Invalid" }
     func actionButtonClicked() { }
     
-    init(name: String, id: UUID = UUID(), creationDate: Date = Date(), activeDays: Set<Weekday> = [], habitHistory: [HabitData] = []) {
+    init(name: String, id: UUID = UUID(), creationDate: Date = Date(), activeDays: Set<Weekday> = []) {
         self.id = id
         self.creationDate = creationDate
         self.name = name

@@ -33,9 +33,7 @@ struct HabitSettingsView: View {
             }
             .padding(24)
             Text("Habit Type is: \(habit.toHabitData().habitType.name)")
-            if(habit.toHabitData().habitType == .geofencedCountHabit) {
-                Text("habt is geo")
-            }
+            Text("UUID is \(habit.toHabitData().id)")
             Spacer()
         }
     }

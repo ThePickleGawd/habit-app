@@ -22,7 +22,6 @@ class HabitViewModel: ObservableObject {
         do {
             let encoded = try JSONEncoder().encode(habitHistorys)
             UserDefaults.standard.set(encoded, forKey: "habitHistorys")
-            
         } catch {
             print("Error saving habit historys: \(error)")
         }
@@ -59,8 +58,9 @@ class HabitViewModel: ObservableObject {
         if let index = habitHistorys.firstIndex(where: { $0.getTodaysHabitData().id == habit.id }) {
             print("Trying to update \(habit.name)")
             let historyIndex = habitHistorys[index].history.count - 1 // Corrected index for history array
+            print(historyIndex)
             if historyIndex >= 0 {
-                habitHistorys[index].history[historyIndex] = habit.toHabitData()
+                habitHistorys[index].history[historyIndex] = habit.toHabitData()                
                 saveHabitHistorys()
             } else {
                 print("Something is empty")

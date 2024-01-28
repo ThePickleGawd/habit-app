@@ -18,6 +18,6 @@ class GeofencedCountHabit : CountHabit {
     }
     
     override func toHabitData() -> HabitData {
-        return HabitData(habitType: .geofencedCountHabit, name: name, id: id, creationDate: creationDate, goal: goal, region: region)
+        return HabitData(habitType: .geofencedCountHabit, name: name, id: id, creationDate: creationDate, progress: progress, goal: goal, region: region)
     }
 }

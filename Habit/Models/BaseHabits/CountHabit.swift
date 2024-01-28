@@ -23,7 +23,6 @@ class CountHabit : Habit {
     }
     
     override func actionButtonClicked() {
-        print("Action button clicked CountHabit")
         if (self.progress < self.goal) {
             self.progress += 1
         }
