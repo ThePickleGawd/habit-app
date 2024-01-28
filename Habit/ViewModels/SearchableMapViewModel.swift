@@ -5,6 +5,7 @@ import Combine
 
 class SearchableMapViewModel: ObservableObject {
     @Published var position: MapCameraPosition = .userLocation(fallback: .automatic)
+    @Published var tapCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
     @Published var selectedPresentationDetent = PresentationDetent.height(150)
     @Published var selectedSearchLocation: SearchResult? = nil
     @Published var searchResults = [SearchResult]()
@@ -42,5 +43,13 @@ class SearchableMapViewModel: ObservableObject {
         selectedSearchLocation = result
         position = .item(.init(placemark: .init(coordinate: result.coordinate)))
         onSelectResult(result)
+    }
+    
+    func tapOnMap(coordinate: CLLocationCoordinate2D) {
+        // Clear search results
+        selectedSearchLocation = nil
+        
+        position = .item(.init(placemark: .init(coordinate: coordinate)))
+        tapCoordinate = coordinate
     }
 }

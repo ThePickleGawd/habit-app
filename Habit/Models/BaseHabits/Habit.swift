@@ -59,17 +59,31 @@ class Habit: Hashable, ObservableObject {
         case .habit:
             return Habit(name: data.name, id: data.id, creationDate: data.creationDate)
         case .countHabit:
-            // Assuming CountHabit is a subclass of Habit
             return CountHabit(name: data.name, id: data.id, creationDate: data.creationDate, goal: data.goal!)
-        case .geofencedHabit:
-            // Assuming GeofencedHabit is a subclass of Habit
-            return GeofencedHabit(name: data.name, id: data.id, creationDate: data.creationDate, region: data.region!, completed: data.completed!)
+        case .geofencedCountHabit:
+            return GeofencedCountHabit(name: data.name, id: data.id, creationDate: data.creationDate, region: data.region!, goal: data.goal!)
+        case .timedHabit: // TODO: Actually do
+            return Habit(name: data.name, id: data.id, creationDate: data.creationDate)
+        case .geofencedTimeHabit:
+            return Habit(name: data.name, id: data.id, creationDate: data.creationDate)
         }
     }
 }
 
-enum HabitType: Int, Codable {
-    case habit = 1, countHabit, geofencedHabit
+enum HabitType: Int, CaseIterable, Codable {
+    case habit = 1, countHabit, timedHabit, geofencedCountHabit, geofencedTimeHabit
+    
+    var name: String {
+        switch self {
+        case .habit: return "Habit"
+        case .countHabit: return "Counting Habit"
+        case .timedHabit: return "Timed Habit"
+        case .geofencedCountHabit: return "Location Counting Habit"
+        case .geofencedTimeHabit: return "Timed Geofencing Habit"
+        default:
+            return "Unkown habit"
+        }
+    }
 }
 
 enum Weekday: Int, CaseIterable {
@@ -77,13 +91,13 @@ enum Weekday: Int, CaseIterable {
 
     var shortName: String {
         switch self {
-        case .sunday: return "S"
-        case .monday: return "M"
-        case .tuesday: return "T"
-        case .wednesday: return "W"
-        case .thursday: return "T"
-        case .friday: return "F"
-        case .saturday: return "S"
+            case .sunday: return "S"
+            case .monday: return "M"
+            case .tuesday: return "T"
+            case .wednesday: return "W"
+            case .thursday: return "T"
+            case .friday: return "F"
+            case .saturday: return "S"
         }
     }
 }

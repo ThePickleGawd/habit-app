@@ -20,6 +20,7 @@ struct ContentView: View {
                 Text("Home")
                 Image(systemName: "house")
             }
+            
             AddHabitView().tabItem {
                 Text("Add Habit")
                 Image(systemName: "plus.app")

@@ -12,6 +12,7 @@ import SwiftUI
 
 class LocationListener: ObservableObject {
     @Published var isInZone = false
+    @Published var locationLat = 0
 }
 
 class SceneDelegate: NSObject, UIWindowSceneDelegate {
@@ -22,9 +23,9 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     let locationManager = CLLocationManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
+        
         let contentView = ContentView()
-
+        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView.environmentObject(locationListener).environmentObject(habitVM))
@@ -42,16 +43,16 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
     func startMonitorRegionAtLocation(center: CLLocationCoordinate2D, identifier: String) {
         print("Registering")
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-           
             let maxDistance = locationManager.maximumRegionMonitoringDistance
             
             // Register the region.
             let region = CLCircularRegion(center: center,
-                 radius: maxDistance, identifier: identifier)
+                                          radius: maxDistance, identifier: identifier)
             region.notifyOnEntry = true
             region.notifyOnExit = true
-       
+            
             locationManager.startMonitoring(for: region)
+            print("Okay")
         }
     }
 }
@@ -59,27 +60,27 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
 extension SceneDelegate : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
         locationListener.isInZone = true
-
+        
         if UIApplication.shared.applicationState == .active {
-            print("behold the pyramids in all their eternal majesty")
+            print("Location good with app open")
         } else {
-          let body = "Behold the " + region.identifier + "in all their eternal majesty!"
-          let notificationContent = UNMutableNotificationContent()
-          notificationContent.body = body
-          notificationContent.sound = .default
-          notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
-          let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-          let request = UNNotificationRequest(
-            identifier: "location_change",
-            content: notificationContent,
-            trigger: trigger)
-          UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-              print("Error: \(error)")
+            print("Should send notification")
+            let body = "Behold the " + region.identifier + "in all their eternal majesty!"
+            let notificationContent = UNMutableNotificationContent()
+            notificationContent.body = body
+            notificationContent.sound = .default
+            notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(
+                identifier: "location_change",
+                content: notificationContent,
+                trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error: \(error)")
+                }
             }
-          }
         }
         
     }
@@ -87,25 +88,25 @@ extension SceneDelegate : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         
         locationListener.isInZone = false
-
+        
         if UIApplication.shared.applicationState == .active {
             print("you have left the pyramids")
         } else {
-          let body = "You left " + region.identifier
-          let notificationContent = UNMutableNotificationContent()
-          notificationContent.body = body
-          notificationContent.sound = .default
-          notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
-          let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-          let request = UNNotificationRequest(
-            identifier: "location_change",
-            content: notificationContent,
-            trigger: trigger)
-          UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-              print("Error: \(error)")
+            let body = "You left " + region.identifier
+            let notificationContent = UNMutableNotificationContent()
+            notificationContent.body = body
+            notificationContent.sound = .default
+            notificationContent.badge = UIApplication.shared.applicationIconBadgeNumber + 1 as NSNumber
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            let request = UNNotificationRequest(
+                identifier: "location_change",
+                content: notificationContent,
+                trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error: \(error)")
+                }
             }
-          }
         }
     }
 }

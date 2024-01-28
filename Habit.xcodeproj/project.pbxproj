@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		FC4023282B667AEA00E7973F /* PreviewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4023272B667AEA00E7973F /* PreviewUtilities.swift */; };
 		FC40232C2B668AF800E7973F /* HabitSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC40232B2B668AF800E7973F /* HabitSettingsView.swift */; };
+		FC40232F2B66A93100E7973F /* TimedHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC40232E2B66A93100E7973F /* TimedHabit.swift */; };
+		FC4023322B66A95400E7973F /* GeofencedTimedHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4023312B66A95400E7973F /* GeofencedTimedHabit.swift */; };
 		FC4922EB2B65C350001DADFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922EA2B65C350001DADFA /* ContentView.swift */; };
 		FC4922ED2B65C352001DADFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4922EC2B65C352001DADFA /* Assets.xcassets */; };
 		FC4922F02B65C352001DADFA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4922EF2B65C352001DADFA /* Preview Assets.xcassets */; };
 		FC4922F82B65C3B1001DADFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922F72B65C3B1001DADFA /* AppDelegate.swift */; };
 		FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922F92B65C3B8001DADFA /* SceneDelegate.swift */; };
 		FC4922FD2B65C52D001DADFA /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922FC2B65C52D001DADFA /* Habit.swift */; };
-		FC4922FF2B65C538001DADFA /* GeofencedHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922FE2B65C538001DADFA /* GeofencedHabit.swift */; };
+		FC4922FF2B65C538001DADFA /* GeofencedCountHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922FE2B65C538001DADFA /* GeofencedCountHabit.swift */; };
 		FC4923012B65C645001DADFA /* HabitHistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */; };
 		FC4923042B65C79B001DADFA /* GeofenceRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923032B65C79B001DADFA /* GeofenceRegion.swift */; };
 		FC4923092B65C842001DADFA /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923082B65C842001DADFA /* AddHabitView.swift */; };
@@ -39,6 +41,8 @@
 /* Begin PBXFileReference section */
 		FC4023272B667AEA00E7973F /* PreviewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewUtilities.swift; sourceTree = "<group>"; };
 		FC40232B2B668AF800E7973F /* HabitSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSettingsView.swift; sourceTree = "<group>"; };
+		FC40232E2B66A93100E7973F /* TimedHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedHabit.swift; sourceTree = "<group>"; };
+		FC4023312B66A95400E7973F /* GeofencedTimedHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofencedTimedHabit.swift; sourceTree = "<group>"; };
 		FC4922E52B65C350001DADFA /* Habit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Habit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4922EA2B65C350001DADFA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FC4922EC2B65C352001DADFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,7 +51,7 @@
 		FC4922F72B65C3B1001DADFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC4922F92B65C3B8001DADFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FC4922FC2B65C52D001DADFA /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
-		FC4922FE2B65C538001DADFA /* GeofencedHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofencedHabit.swift; sourceTree = "<group>"; };
+		FC4922FE2B65C538001DADFA /* GeofencedCountHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofencedCountHabit.swift; sourceTree = "<group>"; };
 		FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitHistoryEntry.swift; sourceTree = "<group>"; };
 		FC4923032B65C79B001DADFA /* GeofenceRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceRegion.swift; sourceTree = "<group>"; };
 		FC4923082B65C842001DADFA /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
@@ -79,6 +83,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC40232D2B66A91500E7973F /* BaseHabits */ = {
+			isa = PBXGroup;
+			children = (
+				FC4922FC2B65C52D001DADFA /* Habit.swift */,
+				FC4923192B6633B9001DADFA /* CountHabit.swift */,
+				FC40232E2B66A93100E7973F /* TimedHabit.swift */,
+			);
+			path = BaseHabits;
+			sourceTree = "<group>";
+		};
+		FC4023302B66A93F00E7973F /* Geofenced */ = {
+			isa = PBXGroup;
+			children = (
+				FC4922FE2B65C538001DADFA /* GeofencedCountHabit.swift */,
+				FC4023312B66A95400E7973F /* GeofencedTimedHabit.swift */,
+			);
+			path = Geofenced;
+			sourceTree = "<group>";
+		};
 		FC4922DC2B65C350001DADFA = {
 			isa = PBXGroup;
 			children = (
@@ -124,10 +147,10 @@
 		FC4922FB2B65C4F2001DADFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FC40232D2B66A91500E7973F /* BaseHabits */,
+				FC4923022B65C658001DADFA /* CustomHabits */,
 				FC4923202B6658AD001DADFA /* SearchLocationService */,
 				FC49231B2B6637A4001DADFA /* Util */,
-				FC4923022B65C658001DADFA /* CustomHabits */,
-				FC4922FC2B65C52D001DADFA /* Habit.swift */,
 				FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */,
 			);
 			path = Models;
@@ -136,8 +159,7 @@
 		FC4923022B65C658001DADFA /* CustomHabits */ = {
 			isa = PBXGroup;
 			children = (
-				FC4922FE2B65C538001DADFA /* GeofencedHabit.swift */,
-				FC4923192B6633B9001DADFA /* CountHabit.swift */,
+				FC4023302B66A93F00E7973F /* Geofenced */,
 			);
 			path = CustomHabits;
 			sourceTree = "<group>";
@@ -273,7 +295,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC4923262B665925001DADFA /* SearchLocationService.swift in Sources */,
-				FC4922FF2B65C538001DADFA /* GeofencedHabit.swift in Sources */,
+				FC4023322B66A95400E7973F /* GeofencedTimedHabit.swift in Sources */,
+				FC4922FF2B65C538001DADFA /* GeofencedCountHabit.swift in Sources */,
 				FC40232C2B668AF800E7973F /* HabitSettingsView.swift in Sources */,
 				FC4923092B65C842001DADFA /* AddHabitView.swift in Sources */,
 				FC49230F2B662819001DADFA /* AnalyticsView.swift in Sources */,
@@ -293,6 +316,7 @@
 				FC49230D2B65D68B001DADFA /* Theme.swift in Sources */,
 				FC49231A2B6633BA001DADFA /* CountHabit.swift in Sources */,
 				FC4923112B66285E001DADFA /* HomeView.swift in Sources */,
+				FC40232F2B66A93100E7973F /* TimedHabit.swift in Sources */,
 				FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */,
 				FC49232E2B66598B001DADFA /* SearchableMapViewModel.swift in Sources */,
 				FC4923042B65C79B001DADFA /* GeofenceRegion.swift in Sources */,
@@ -434,6 +458,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Habit/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Enable location for geofencing features";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location for geofencing features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -464,6 +490,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Habit/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Enable location for geofencing features";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location for geofencing features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
