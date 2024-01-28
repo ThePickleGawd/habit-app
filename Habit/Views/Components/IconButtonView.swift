@@ -15,7 +15,7 @@ struct IconButtonView: View {
         Button(action: action) {
             Image(systemName: systemName) // Replace with your icon name
                 .padding() // Add padding around the icon
-                .background(Theme.Color.gray600) // Set the background color
+                .background(Theme.Color.gray700.opacity(0.4)) // Set the background color
                 .foregroundColor(.white) // Set the icon color
                 .shadow(radius: 10) // Optional: Add a shadow for depth
                 .cornerRadius(14.0)
@@ -27,5 +27,5 @@ struct IconButtonView: View {
 #Preview {
     IconButtonView(systemName: "pencil", action: {
         print("Clicked")
-    })
+    }).preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
 }

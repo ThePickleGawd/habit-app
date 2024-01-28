@@ -21,6 +21,9 @@
 		FC49230D2B65D68B001DADFA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49230C2B65D68B001DADFA /* Theme.swift */; };
 		FC49230F2B662819001DADFA /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49230E2B662819001DADFA /* AnalyticsView.swift */; };
 		FC4923112B66285E001DADFA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923102B66285E001DADFA /* HomeView.swift */; };
+		FC4923142B662DDE001DADFA /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923132B662DDE001DADFA /* HabitViewModel.swift */; };
+		FC4923182B662F17001DADFA /* HabitListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923172B662F17001DADFA /* HabitListItemView.swift */; };
+		FC49231A2B6633BA001DADFA /* CountHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923192B6633B9001DADFA /* CountHabit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		FC49230C2B65D68B001DADFA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		FC49230E2B662819001DADFA /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		FC4923102B66285E001DADFA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FC4923132B662DDE001DADFA /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
+		FC4923172B662F17001DADFA /* HabitListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListItemView.swift; sourceTree = "<group>"; };
+		FC4923192B6633B9001DADFA /* CountHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountHabit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +78,9 @@
 		FC4922E72B65C350001DADFA /* Habit */ = {
 			isa = PBXGroup;
 			children = (
-				FC4923052B65C7E7001DADFA /* Views */,
 				FC4922FB2B65C4F2001DADFA /* Models */,
+				FC4923122B662DC0001DADFA /* View Models */,
+				FC4923052B65C7E7001DADFA /* Views */,
 				FC4922F62B65C39D001DADFA /* Info.plist */,
 				FC4922EA2B65C350001DADFA /* ContentView.swift */,
 				FC4922F72B65C3B1001DADFA /* AppDelegate.swift */,
@@ -96,10 +103,10 @@
 		FC4922FB2B65C4F2001DADFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FC49231B2B6637A4001DADFA /* Util */,
 				FC4923022B65C658001DADFA /* Custom Habits */,
 				FC4922FC2B65C52D001DADFA /* Habit.swift */,
 				FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */,
-				FC4923032B65C79B001DADFA /* GeofenceRegion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -108,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				FC4922FE2B65C538001DADFA /* GeofencedHabit.swift */,
+				FC4923192B6633B9001DADFA /* CountHabit.swift */,
 			);
 			path = "Custom Habits";
 			sourceTree = "<group>";
@@ -115,12 +123,45 @@
 		FC4923052B65C7E7001DADFA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FC4923082B65C842001DADFA /* AddHabitView.swift */,
+				FC4923152B662EED001DADFA /* Components */,
+				FC4923162B662EFF001DADFA /* Screens */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FC4923122B662DC0001DADFA /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC4923132B662DDE001DADFA /* HabitViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		FC4923152B662EED001DADFA /* Components */ = {
+			isa = PBXGroup;
+			children = (
 				FC49230A2B65D03A001DADFA /* IconButtonView.swift */,
+				FC4923172B662F17001DADFA /* HabitListItemView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FC4923162B662EFF001DADFA /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FC4923082B65C842001DADFA /* AddHabitView.swift */,
 				FC49230E2B662819001DADFA /* AnalyticsView.swift */,
 				FC4923102B66285E001DADFA /* HomeView.swift */,
 			);
-			path = Views;
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		FC49231B2B6637A4001DADFA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				FC4923032B65C79B001DADFA /* GeofenceRegion.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,14 +238,17 @@
 				FC4923092B65C842001DADFA /* AddHabitView.swift in Sources */,
 				FC49230F2B662819001DADFA /* AnalyticsView.swift in Sources */,
 				FC4922F82B65C3B1001DADFA /* AppDelegate.swift in Sources */,
+				FC4923182B662F17001DADFA /* HabitListItemView.swift in Sources */,
 				FC4922EB2B65C350001DADFA /* ContentView.swift in Sources */,
 				FC4922FD2B65C52D001DADFA /* Habit.swift in Sources */,
 				FC49230B2B65D03A001DADFA /* IconButtonView.swift in Sources */,
 				FC4923012B65C645001DADFA /* HabitHistoryEntry.swift in Sources */,
 				FC49230D2B65D68B001DADFA /* Theme.swift in Sources */,
+				FC49231A2B6633BA001DADFA /* CountHabit.swift in Sources */,
 				FC4923112B66285E001DADFA /* HomeView.swift in Sources */,
 				FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */,
 				FC4923042B65C79B001DADFA /* GeofenceRegion.swift in Sources */,
+				FC4923142B662DDE001DADFA /* HabitViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

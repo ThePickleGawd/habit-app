@@ -17,18 +17,15 @@ struct ContentView: View {
         TabView {
             HomeView().tabItem {
                 Image(systemName: "house")
-                Text("Home")
-            }.preferredColorScheme(.dark)
+            }
             AddHabitView().tabItem {
                 Image(systemName: "plus.app")
-                Text("Add Habit")
-            }.preferredColorScheme(.dark)
+            }
             
             AnalyticsView().tabItem {
                 Image(systemName: "chart.xyaxis.line")
-                Text("Analytics")
-            }.preferredColorScheme(.dark)
-        }
+            }
+        }.preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
     }
 }
 
