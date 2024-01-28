@@ -33,6 +33,7 @@
 		FC49232A2B66594B001DADFA /* SearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923292B66594B001DADFA /* SearchSheet.swift */; };
 		FC49232C2B66597C001DADFA /* SearchableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49232B2B66597C001DADFA /* SearchableMap.swift */; };
 		FC49232E2B66598B001DADFA /* SearchableMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49232D2B66598B001DADFA /* SearchableMapViewModel.swift */; };
+		FDDA55312B667BFB002D5E54 /* OneHabitAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDA55302B667BFB002D5E54 /* OneHabitAnalytics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		FC4923292B66594B001DADFA /* SearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSheet.swift; sourceTree = "<group>"; };
 		FC49232B2B66597C001DADFA /* SearchableMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableMap.swift; sourceTree = "<group>"; };
 		FC49232D2B66598B001DADFA /* SearchableMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableMapViewModel.swift; sourceTree = "<group>"; };
+		FDDA55302B667BFB002D5E54 /* OneHabitAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneHabitAnalytics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				FC4923172B662F17001DADFA /* HabitListItemView.swift */,
 				FC4923292B66594B001DADFA /* SearchSheet.swift */,
 				FC49232B2B66597C001DADFA /* SearchableMap.swift */,
+				FDDA55302B667BFB002D5E54 /* OneHabitAnalytics.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				FC4922F82B65C3B1001DADFA /* AppDelegate.swift in Sources */,
 				FC4923282B665935001DADFA /* SearchLocationServiceFactory.swift in Sources */,
 				FC4923182B662F17001DADFA /* HabitListItemView.swift in Sources */,
+				FDDA55312B667BFB002D5E54 /* OneHabitAnalytics.swift in Sources */,
 				FC4922EB2B65C350001DADFA /* ContentView.swift in Sources */,
 				FC4922FD2B65C52D001DADFA /* Habit.swift in Sources */,
 				FC4923222B6658EE001DADFA /* DataAccess.swift in Sources */,

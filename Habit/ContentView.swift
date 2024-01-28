@@ -25,7 +25,7 @@ struct ContentView: View {
                 Image(systemName: "plus.app")
             }
             
-            AnalyticsView().tabItem {
+            AnalyticsView(habitVM: habitVM).tabItem {
                 Text("Analytics")
                 Image(systemName: "chart.xyaxis.line")
             }
