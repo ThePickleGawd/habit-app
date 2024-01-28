@@ -9,24 +9,18 @@ import SwiftUI
 import MapKit
 import Combine
 
-struct Day: Identifiable, Hashable {
-    let id: UUID
-    let name: String
-}
-
 struct AddHabitView: View {
+    @EnvironmentObject var habitVM: HabitViewModel
+    
+    // Habit Settings
     @State private var name: String = ""
-    @State private var selectedDays = Set<UUID>()
+    @State private var goal: Int = 0
+    @State private var selectedDays: Set<Weekday> = []
     @State private var selectedTime = Date.now
-    @State private var isMapPresented = false
+    
+    // UI
     @State private var mapSearch: String = ""
-    
-    private var daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]
-    private var days: [Day]
-    
-    init() {
-        days = daysOfWeek.map { Day(id: UUID(), name: $0) }
-    }
+    @State private var isMapPresented = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -47,7 +41,7 @@ struct AddHabitView: View {
                             .foregroundStyle(Theme.Color.gray400)
                             .fontWeight(.bold)
                             .padding(.horizontal)
-                        TextField("placeholder", text: $name)
+                        TextField("Enter a name", text: $name)
                             .padding()
                             .background(Theme.Color.gray900)
                             .foregroundColor(Theme.Color.gray400)
@@ -60,12 +54,13 @@ struct AddHabitView: View {
                             .foregroundStyle(Theme.Color.gray400)
                             .fontWeight(.bold)
                             .padding(.horizontal)
-                        TextField("placeholder", text: $name)
+                        TextField("ex. 3 times", value: $goal, formatter: NumberFormatter())
                             .padding()
                             .background(Theme.Color.gray900)
                             .foregroundColor(Theme.Color.gray400)
                             .cornerRadius(8)
                             .padding(.horizontal, 4)
+                            .keyboardType(.numberPad)
                         
                     }
                     VStack(alignment: .leading) {
@@ -74,19 +69,18 @@ struct AddHabitView: View {
                             .fontWeight(.bold)
                             .padding(.horizontal)
                         HStack {
-                            ForEach(days, id: \.self) { day in
+                            ForEach(Weekday.allCases, id: \.self) { day in
                                 Button(action: {
-                                    if selectedDays.contains(day.id) {
-                                        selectedDays.remove(day.id)
+                                    if selectedDays.contains(day) {
+                                        selectedDays.remove(day)
                                     } else {
-                                        selectedDays.insert(day.id)
+                                        selectedDays.insert(day)
                                     }
                                 }) {
-                                    Text(day.name)
+                                    Text(day.shortName)
                                         .padding()
-                                        .background(selectedDays.contains(day.id) ? Theme.Color.blue600 : Theme.Color.gray700) // Selected color
-                                        .foregroundColor(selectedDays.contains(day.id) ? Color.white : Theme.Color.gray200) // Adjust text color accordingly
-                                        .cornerRadius(8)
+                                        .background(selectedDays.contains(day) ? Theme.Color.blue600 : Theme.Color.gray700) // Adjust for selected/unselected
+                                        .foregroundColor(selectedDays.contains(day) ? Color.white : Theme.Color.gray200)
                                         .cornerRadius(8)
                                 }
                             }
@@ -113,7 +107,7 @@ struct AddHabitView: View {
                 Spacer()
             }.padding()
             Button(action: {
-                
+                habitVM.addHabit(CountHabit(name: name,  activeDays: selectedDays, goal: goal))
             }) {
                 Text("ADD HABIT")
                     .fontWeight(.bold)
@@ -124,7 +118,6 @@ struct AddHabitView: View {
                     .cornerRadius(40)
             }
             if isMapPresented {
-            
                 SearchableMap(isPresented: $isMapPresented, textFieldPlaceHolder: "Search...", search: $mapSearch, onSelectResult: {
                     _ in
                 })
@@ -136,5 +129,6 @@ struct AddHabitView: View {
 
 
 #Preview {
-    AddHabitView().preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
+    AddHabitView()
+        .previewSetup()
 }

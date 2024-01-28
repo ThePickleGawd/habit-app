@@ -9,14 +9,14 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    @ObservedObject var habitVM = HabitViewModel()
-    
+    @EnvironmentObject var habitVM: HabitViewModel
     @EnvironmentObject var locationListener: LocationListener
+    
     @State var swipeOffset: CGFloat = 0
         
     var body: some View {
         TabView {
-            HomeView(habitVM: habitVM).tabItem {
+            HomeView().tabItem {
                 Text("Home")
                 Image(systemName: "house")
             }
@@ -36,5 +36,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView().background(Theme.Color.gray800)
+    ContentView().previewSetup()
 }
