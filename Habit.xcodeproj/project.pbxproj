@@ -19,6 +19,8 @@
 		FC4923092B65C842001DADFA /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923082B65C842001DADFA /* AddHabitView.swift */; };
 		FC49230B2B65D03A001DADFA /* IconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49230A2B65D03A001DADFA /* IconButtonView.swift */; };
 		FC49230D2B65D68B001DADFA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49230C2B65D68B001DADFA /* Theme.swift */; };
+		FC49230F2B662819001DADFA /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49230E2B662819001DADFA /* AnalyticsView.swift */; };
+		FC4923112B66285E001DADFA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923102B66285E001DADFA /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		FC4923082B65C842001DADFA /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		FC49230A2B65D03A001DADFA /* IconButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButtonView.swift; sourceTree = "<group>"; };
 		FC49230C2B65D68B001DADFA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		FC49230E2B662819001DADFA /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		FC4923102B66285E001DADFA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 			children = (
 				FC4923082B65C842001DADFA /* AddHabitView.swift */,
 				FC49230A2B65D03A001DADFA /* IconButtonView.swift */,
+				FC49230E2B662819001DADFA /* AnalyticsView.swift */,
+				FC4923102B66285E001DADFA /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,12 +195,14 @@
 			files = (
 				FC4922FF2B65C538001DADFA /* GeofencedHabit.swift in Sources */,
 				FC4923092B65C842001DADFA /* AddHabitView.swift in Sources */,
+				FC49230F2B662819001DADFA /* AnalyticsView.swift in Sources */,
 				FC4922F82B65C3B1001DADFA /* AppDelegate.swift in Sources */,
 				FC4922EB2B65C350001DADFA /* ContentView.swift in Sources */,
 				FC4922FD2B65C52D001DADFA /* Habit.swift in Sources */,
 				FC49230B2B65D03A001DADFA /* IconButtonView.swift in Sources */,
 				FC4923012B65C645001DADFA /* HabitHistoryEntry.swift in Sources */,
 				FC49230D2B65D68B001DADFA /* Theme.swift in Sources */,
+				FC4923112B66285E001DADFA /* HomeView.swift in Sources */,
 				FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */,
 				FC4923042B65C79B001DADFA /* GeofenceRegion.swift in Sources */,
 			);

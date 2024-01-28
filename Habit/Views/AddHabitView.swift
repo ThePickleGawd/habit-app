@@ -80,8 +80,9 @@ struct AddHabitView: View {
                                 }) {
                                     Text(day.name)
                                         .padding()
-                                        .background(Theme.Color.gray700)
-                                        .foregroundColor(Theme.Color.gray200)
+                                        .background(selectedDays.contains(day.id) ? Theme.Color.blue600 : Theme.Color.gray700) // Selected color
+                                        .foregroundColor(selectedDays.contains(day.id) ? Color.white : Theme.Color.gray200) // Adjust text color accordingly
+                                        .cornerRadius(8)
                                         .cornerRadius(8)
                                 }
                             }
@@ -101,7 +102,7 @@ struct AddHabitView: View {
                     .fontWeight(.bold)
                     .padding(.vertical, 16)
                     .padding(.horizontal, 64)
-                    .background(Color.blue)
+                    .background(Theme.Color.blue600)
                     .foregroundColor(.white)
                     .cornerRadius(40)
             }
@@ -110,5 +111,5 @@ struct AddHabitView: View {
 }
 
 #Preview {
-    AddHabitView().background(Theme.Color.gray800)
+    AddHabitView().preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
 }

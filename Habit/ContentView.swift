@@ -15,33 +15,19 @@ struct ContentView: View {
         
     var body: some View {
         TabView {
-            VStack(alignment: .center) {
-                HStack(alignment: .center ) {
-                    Image(systemName: "person.crop.circle").font(.system(size: 24))
-                    Spacer()
-                    Text("Today").font(.title)
-                    Spacer()
-                    Image(systemName: "gearshape").font(.system(size: 24))
-                }
-                .padding(.all)
-                List {
-                    Text("Habit 1")
-                    Text("Habit 2")
-                }
-                
-                
-            }.tabItem {
+            HomeView().tabItem {
                 Image(systemName: "house")
-            }
+                Text("Home")
+            }.preferredColorScheme(.dark)
             AddHabitView().tabItem {
                 Image(systemName: "plus.app")
-            }
+                Text("Add Habit")
+            }.preferredColorScheme(.dark)
             
-            VStack {
-                
-            }.tabItem {
-                Image(systemName: "chart.line.uptrend.xyaxis")
-            }
+            AnalyticsView().tabItem {
+                Image(systemName: "chart.xyaxis.line")
+                Text("Analytics")
+            }.preferredColorScheme(.dark)
         }
     }
 }
