@@ -18,7 +18,6 @@
 		FC4922FA2B65C3B8001DADFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922F92B65C3B8001DADFA /* SceneDelegate.swift */; };
 		FC4922FD2B65C52D001DADFA /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922FC2B65C52D001DADFA /* Habit.swift */; };
 		FC4922FF2B65C538001DADFA /* GeofencedCountHabit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4922FE2B65C538001DADFA /* GeofencedCountHabit.swift */; };
-		FC4923012B65C645001DADFA /* HabitHistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */; };
 		FC4923042B65C79B001DADFA /* GeofenceRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923032B65C79B001DADFA /* GeofenceRegion.swift */; };
 		FC4923092B65C842001DADFA /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4923082B65C842001DADFA /* AddHabitView.swift */; };
 		FC49230B2B65D03A001DADFA /* IconButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49230A2B65D03A001DADFA /* IconButtonView.swift */; };
@@ -52,7 +51,6 @@
 		FC4922F92B65C3B8001DADFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FC4922FC2B65C52D001DADFA /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		FC4922FE2B65C538001DADFA /* GeofencedCountHabit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofencedCountHabit.swift; sourceTree = "<group>"; };
-		FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitHistoryEntry.swift; sourceTree = "<group>"; };
 		FC4923032B65C79B001DADFA /* GeofenceRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceRegion.swift; sourceTree = "<group>"; };
 		FC4923082B65C842001DADFA /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		FC49230A2B65D03A001DADFA /* IconButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButtonView.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				FC4923022B65C658001DADFA /* CustomHabits */,
 				FC4923202B6658AD001DADFA /* SearchLocationService */,
 				FC49231B2B6637A4001DADFA /* Util */,
-				FC4923002B65C645001DADFA /* HabitHistoryEntry.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,7 +308,6 @@
 				FC49232A2B66594B001DADFA /* SearchSheet.swift in Sources */,
 				FC49230B2B65D03A001DADFA /* IconButtonView.swift in Sources */,
 				FC49232C2B66597C001DADFA /* SearchableMap.swift in Sources */,
-				FC4923012B65C645001DADFA /* HabitHistoryEntry.swift in Sources */,
 				FC4023282B667AEA00E7973F /* PreviewUtilities.swift in Sources */,
 				FC49230D2B65D68B001DADFA /* Theme.swift in Sources */,
 				FC49231A2B6633BA001DADFA /* CountHabit.swift in Sources */,
